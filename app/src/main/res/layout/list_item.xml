@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.kupujemprodajemaplikacija.utils.Utils" />
+
+        <variable
+            name="listener"
+            type="com.example.kupujemprodajemaplikacija.ui.ad.AdClickListener" />
+
+        <variable
+            name="oglas"
+            type="com.example.kupujemprodajemaplikacija.models.Ad" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cardview_background"
+        android:onClick="@{() -> listener.onAdClick(oglas)}"
+        android:padding="8dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_image"
+            android:layout_width="96dp"
+            android:layout_height="90dp"
+            android:background="@drawable/image_border"
+            app:cardCornerRadius="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:id="@+id/iv_item_list_icon"
+                android:layout_width="96dp"
+                android:layout_height="90dp"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                app:glideImage="@{oglas.photo1_tmb_300x300}">
+
+            </ImageView>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_item_description"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            android:paddingHorizontal="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iv_item_favorite"
+            app:layout_constraintStart_toEndOf="@+id/cv_image"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="62dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lineHeight="20sp"
+                    android:maxLines="2"
+                    android:text="@{oglas.name}"
+                    android:textColor="@color/blue_color"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Godox 5 u 1 ziberica (100x150cm)" />
+
+                <TextView
+                    android:id="@+id/tv_item_city_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:paddingTop="4dp"
+                    android:text="@{oglas.location_name}"
+                    android:textColor="@color/grey_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    tools:text="21003 Novi Sad" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pt_sans"
+                    android:lineHeight="20dp"
+                    android:maxLines="1"
+                    android:text="@{Utils.INSTANCE.adToCurrency(oglas)}"
+                    android:textColor="@color/red_color"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="421 e" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/iv_item_favorite"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            app:favImage="@{oglas.is_following_ad()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/cl_item_description"
+            tools:src="@drawable/favorite_no_selected" />
+
+        <ImageView
+            android:id="@+id/ivPromo"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/favorite_selected"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:visibility="visible"></ImageView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

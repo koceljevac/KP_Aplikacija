@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Kupujem Prodajem Aplikacija</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="kategorija">Kategorija:</string>
+    <string name="kupujemprodajem_2022_all_rights_reserved">KupujemProdajem © 2022 All rights reserved</string>
+    <string name="label_all_rights_reserved">KupujemProdajem © 2022 All rights reserved</string>
+    <string name="label_oglas_je_obrisan">Oglas je Obrisan</string>
+</resources>
